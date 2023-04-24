@@ -1,44 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 
-namespace generator
+namespace ProjCharGenerator
 {
-    class CharGenerator 
-    {
-        private string syms = "абвгдеёжзийклмнопрстуфхцчшщьыъэюя"; 
-        private char[] data;
-        private int size;
-        private Random random = new Random();
-        public CharGenerator() 
-        {
-           size = syms.Length;
-           data = syms.ToCharArray(); 
-        }
-        public char getSym() 
-        {
-           return data[random.Next(0, size)]; 
-        }
-    }
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
-            CharGenerator gen = new CharGenerator();
-            SortedDictionary<char, int> stat = new SortedDictionary<char, int>();
-            for(int i = 0; i < 1000; i++) 
-            {
-               char ch = gen.getSym(); 
-               if (stat.ContainsKey(ch))
-                  stat[ch]++;
-               else
-                  stat.Add(ch, 1); Console.Write(ch);
-            }
-            Console.Write('\n');
-            foreach (KeyValuePair<char, int> entry in stat) 
-            {
-                 Console.WriteLine("{0} - {1}",entry.Key,entry.Value/1000.0); 
-            }
-            
+            ToFile(new GenericGeneration("Bigramm"), "Bigramm.txt");
+            ToFile(new GenericGeneration("Text"), "Text.txt");
+            ToFile(new GenericGeneration("PairWord"), "PairWordText.txt");
+        }
+
+        public static void ToFile(GenericGeneration generator, string path, int count = 1000)
+        {
+            string buf = "";
+            for (int i = 0; i < count; i++)
+                buf += generator.Generate() + " ";
+            File.WriteAllText(path, buf);
         }
     }
 }
