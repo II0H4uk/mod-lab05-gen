@@ -17,13 +17,13 @@ namespace ProjCharGenerator
         public GenericGeneration(string inputType)
         {
             type = inputType;
-            string buf = File.ReadAllText("../../../../" + type + "Data.txt");
+            string buf = File.ReadAllText("../../../../ProjCharGenerator/" + type + "Data.txt");
             data = buf.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
             size = data.Length;
             weights = new int[size * size];
             upBorder = new int[size * size];
 
-            string[] weightsBuf = File.ReadAllText(type + "Weights.txt").Split(new char[] { ' ', '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] weightsBuf = File.ReadAllText("../../../../ProjCharGenerator/" + type + "Weights.txt").Split(new char[] { ' ', '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
             for (int i = 0; i < weightsBuf.Length; i++)
                 weights[i] = int.Parse(weightsBuf[i]);
             for (int i = 0; i < size * size; i++)
