@@ -17,7 +17,7 @@ namespace ProjCharGenerator
         public GenericGeneration(string inputType)
         {
             type = inputType;
-            string buf = File.ReadAllText(type + "Data.txt");
+            string buf = File.ReadAllText("../../../../" + type + "Data.txt");
             data = buf.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
             size = data.Length;
             weights = new int[size * size];
