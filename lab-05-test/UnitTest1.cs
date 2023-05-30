@@ -11,7 +11,7 @@ namespace ProjCharGenerator
         public void TestMethod1()
         {
             int wordsCount = 100;
-            Program.ToFile(new GenericGeneration("Bigramm"), "../../../../Bigra.txt", wordsCount);
+            Program.ToFile(new GenericGeneration("Bigramm"), "Bigramm.txt", wordsCount);
             string[] words = File.ReadAllText("Bigramm.txt").Split(new char[] { ' ', '\n', '\r' }, System.StringSplitOptions.RemoveEmptyEntries);
             Assert.AreEqual(words.Length, wordsCount);
         }
