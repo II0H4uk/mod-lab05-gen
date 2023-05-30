@@ -1,4 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using ProjCharGenerator;
 using System.IO;
 
 namespace ProjCharGenerator
